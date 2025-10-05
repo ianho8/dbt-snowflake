@@ -1,0 +1,20 @@
+version: 2
+sources:
+- name: marts
+  description: 'Point of Sale source data'
+  database: tasty_bytes_dbt_db
+  schema: DEV
+  tables:
+  - name: EXPLORE
+    description: 'Test'
+    columns:
+    - name: COUNTRY
+      description: 'Name of the country'
+      data_tests:
+        - not_null
+    - name: MENU_ITEM_NAME
+      description: 'Name of the menu item purchased'
+    - name: PROFIT
+      description: 'Profit (price of items - cost of goods)'
+      data_tests:
+        - not_null
