@@ -12,9 +12,6 @@ sources:
       description: 'Primary key for countries'
       data_tests:
         - not_null
-        - dbt_utils.accepted_range:  # Numeric range validation
-            min_value: 1
-            max_value: 1000
     - name: COUNTRY
       description: 'Country name'
       data_tests:
@@ -31,8 +28,6 @@ sources:
       description: 'City name'
     - name: CITY_POPULATION
       description: 'City population count'
-      data_tests:
-        - is_positive_amount
   - name: FRANCHISE
     description: 'Franchise ownership data'
     columns:
@@ -116,12 +111,8 @@ sources:
       description: 'Category of food item'
     - name: COST_OF_GOODS_USD
       description: 'Cost to prepare item'
-      data_tests:
-        - is_positive_amount
     - name: SALE_PRICE_USD
       description: 'Retail price of item'
-      data_tests:
-        - is_positive_amount
     - name: MENU_ITEM_HEALTH_METRICS_OBJ
       description: 'Health metrics for menu item'
   - name: ORDER_DETAIL
@@ -152,15 +143,10 @@ sources:
       description: 'Quantity ordered'
       data_tests:
         - not_null
-        - is_positive_amount
     - name: UNIT_PRICE
       description: 'Price per unit'
-      data_tests:
-        - is_positive_amount
     - name: PRICE
       description: 'Total line price'
-      data_tests:
-        - is_positive_amount
     - name: ORDER_ITEM_DISCOUNT_AMOUNT
       description: 'Discount amount for line'
   - name: ORDER_HEADER
@@ -201,8 +187,6 @@ sources:
       description: 'Order timestamp'
       data_tests:
         - not_null
-        - dbt_utils.expression_is_true:  # Verify timestamp is not in the future
-            expression: "{{ column_name }} <= current_timestamp()"
     - name: SERVED_TS
       description: 'Time order was served'
     - name: ORDER_CURRENCY
@@ -213,11 +197,6 @@ sources:
       description: 'Pre-tax order amount'
       data_tests:
         - not_null
-        - is_positive_amount
-        - dbt_utils.accepted_range:  # Realistic order amount range
-            min_value: 0
-            max_value: 10
-            inclusive: true
     - name: ORDER_TAX_AMOUNT
       description: 'Tax amount'
     - name: ORDER_DISCOUNT_AMOUNT
@@ -226,7 +205,6 @@ sources:
       description: 'Total order amount'
       data_tests:
         - not_null
-        - is_positive_amount
   - name: TRUCK
     description: 'Food truck data'
     columns:

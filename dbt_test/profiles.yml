@@ -1,0 +1,19 @@
+dbt_test:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      role: ACCOUNTADMIN
+      warehouse: TASTY_BYTES_DBT_WH
+      database: TASTY_BYTES_DBT_DB
+      schema: DEV
+      account: ' '
+      user: ' '
+    prod:
+      type: snowflake
+      role: ACCOUNTADMIN
+      warehouse: TASTY_BYTES_DBT_WH
+      database: TASTY_BYTES_DBT_DB
+      schema: PROD
+      account: ' '
+      user: ' '
