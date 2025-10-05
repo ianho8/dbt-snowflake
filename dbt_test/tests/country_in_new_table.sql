@@ -1,6 +1,6 @@
 SELECT *
-FROM {{ ref('RAW_POS_COUNTRY') }}
+FROM {{ ref('raw_pos_country') }}
 WHERE COUNTRY NOT IN (
     SELECT DISTINCT COUNTRY 
-    FROM {{ ref('RAW_POS_COUNTRY') }}
+    FROM {{ ref('explore') }}
 )

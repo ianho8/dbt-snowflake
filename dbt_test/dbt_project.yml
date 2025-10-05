@@ -16,4 +16,7 @@ snapshot-paths:
   - snapshots
 models:
   dbt_test:
-    +materialized: table
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
